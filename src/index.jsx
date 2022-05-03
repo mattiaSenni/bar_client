@@ -17,6 +17,10 @@ import { Provider } from 'react-redux'
 
 import PageNotFound from './routes/pageNotFound'
 import Home from './routes/home'
+import Login from './routes/login'
+import Setting from './routes/setting'
+import Menu from './routes/menu'
+import Orders from './routes/orders'
 
 import themeLoader from './theme/themeLoader';
 
@@ -24,7 +28,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <MyApp />
-    </Provider>    
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -38,7 +42,14 @@ function MyApp() {
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="/home" element={<Home />}></Route>
+            <Route path="/menu" element={<Menu />}></Route>
+            <Route path="/orders" element={<Orders />}></Route>
+            <Route path="/setting" element={<Setting />}></Route>
           </Route>
+          <Route
+            path="/login"
+            element={<Login />}
+          />
             <Route
               path="*"
               element={<PageNotFound />}

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import numberSlice from '../features/number'
+import loginSlice from '../features/login'
 
 const persistedState = localStorage.getItem('reduxState') 
   ? JSON.parse(localStorage.getItem('reduxState'))
@@ -8,18 +9,18 @@ const persistedState = localStorage.getItem('reduxState')
 
 let store = configureStore({
   reducer: {
-    number: numberSlice
+    number: numberSlice, 
+    login: loginSlice
   },
-  //uncomment row below to load store from LocalStorage
-// preloadedState: persistedState
+  
+  preloadedState: persistedState
 })
 
 
-//uncomment row below to save store from LocalStorage
-// store.subscribe(() => {
-//   let toSave = store.getState()
-//   let save = { ...toSave, weather: {weather:[]} }
-//   localStorage.setItem('reduxState', JSON.stringify(save))
-// })
+store.subscribe(() => {
+  let toSave = store.getState()
+  let save = { ...toSave}
+  localStorage.setItem('reduxState', JSON.stringify(save))
+})
 
 export default store

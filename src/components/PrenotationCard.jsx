@@ -47,7 +47,7 @@ export default function PrenotationCard({ prenotation }) {
             <p>
               {detail ?
                 detail.menu.map((el) => {
-                  return (<div style={{border:'1px solid black', borderRadius:'5px', padding:'5px', margin:'5px'}}>
+                  return (<div style={{border:'1px solid black', borderRadius:'5px', padding:'10px', margin:'5px'}}>
                     {el.Nome}<br />
                     {
                       el.prodotti.map(el => {

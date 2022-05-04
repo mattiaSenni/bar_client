@@ -1,19 +1,19 @@
 const palette = {
   primary: {
-    light: '#6CA7B5',
-    dark: '#6CA7B5'
+    light: '#EF233C',
+    dark: '#EF233C'
   },
   secondary: {
     light: '#264653',
-    dark: '#ffffff'
+    dark: '#264653'
   },
   accent: {
     light: '#F4A261',
     dark: '#F4A261'
   },
   background: {
-    light: '#ededed',
-    dark: '#00303D'
+    light: '#eeeeee',
+    dark: '#eeeeee'
   },
   red: {
     light: '#E76F51',
@@ -29,7 +29,7 @@ const palette = {
   },
   textColor: {
     light: '#000000',
-    dark: '#ffffff'
+    dark: '#000000'
   },
   footerBackGround: {
     light: '#ffffff',

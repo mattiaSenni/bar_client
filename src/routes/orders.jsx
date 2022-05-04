@@ -13,7 +13,7 @@ export default function Orders() {
 
   //ask getMenu in useEffect just with componentDidMount
   useEffect(() => {
-    getOrders(token, user['IDBar']).then(res => {
+    getOrders(token, user['ID']).then(res => {
       setOrders(res.data)
       setError(false)
     }).catch(err => {

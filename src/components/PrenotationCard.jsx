@@ -31,7 +31,7 @@ export default function PrenotationCard({ prenotation }) {
 
   return (
     <>
-      <div style={{ padding: '10px', margin: '5px', borderRadius: '5px', boxShadow: '2px 2px 10px #333' }} onClick={handleClickOpen}>
+      <div style={{ padding: '10px', margin: '5px', marginBottom: '10px', borderRadius: '5px', boxShadow: '2px 2px 10px #333' }} onClick={handleClickOpen}>
         {prenotation['Ora_Inizio']} - {prenotation['Ora_Fine']}<br />
         €{prenotation['Saldo']} - {prenotation['Tipologia']}<br />
       </div>
@@ -44,15 +44,14 @@ export default function PrenotationCard({ prenotation }) {
         <DialogContent>
           
           <div>
-            <p>
               {detail ?
-                detail.menu.map((el) => {
-                  return (<div style={{border:'1px solid black', borderRadius:'5px', padding:'10px', margin:'5px'}}>
+                detail.menu.map((el, i1) => {
+                  return (<div key={i1} style={{border:'1px solid black', borderRadius:'5px', padding:'10px', margin:'5px'}}>
                     {el.Nome}<br />
                     {
-                      el.prodotti.map(el => {
+                      el.prodotti.map((el, index) => {
                         return (
-                          <div>
+                          <div key={index}>
                             {el.Descrizione} - 
                             {el.Categoria}<br />
                           </div>
@@ -63,12 +62,12 @@ export default function PrenotationCard({ prenotation }) {
                 })
                 :
                 null}
-            </p>
+            
           </div>
           
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>CLOSE</Button>
+          <Button onClick={handleClose}>CHIUDI</Button>
         </DialogActions>
       </Dialog>
     </>

@@ -2,7 +2,8 @@ import { createTheme } from '@mui/material/styles';
 import palette from './palette';
 
 export default function getTheme(mode) {
-  return mode == 'light' ? lightTheme : darkTheme
+  // return mode == 'light' ? lightTheme : darkTheme
+  return lightTheme
 }
 
 console.log('palette', palette)

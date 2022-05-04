@@ -4,6 +4,7 @@ import { Link, Outlet, useLocation, useNavigate, Navigate } from 'react-router-d
 import { useSelector, useDispatch } from "react-redux";
 import {BottomNavigation, BottomNavigationAction} from '@mui/material'
 import { FastfoodRounded, HomeRounded, MenuRounded, SettingsRounded } from '@mui/icons-material';
+import TopAppBar from './components/TopAppBar';
 
 function App() {
   let location = useLocation().pathname
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div>
+      <TopAppBar />
       <Outlet />
       <BottomNavigation
         style={{position:'fixed', bottom:0, width:'100%'}}

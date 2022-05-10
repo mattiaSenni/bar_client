@@ -50,7 +50,7 @@ export default function Carrello() {
             })
         }
 
-        <Fab variant="extended" style={{position: 'absolute',bottom: 66,right: 16,}} color="primary" onClick={()=>{setOpen(true)}}>
+        <Fab variant="extended" style={{position: 'fixed',bottom: 66,right: 16,}} color="primary" onClick={()=>{setOpen(true)}}>
         <SendIcon sx={{ mr: 1 }} />
             INVIA LA PRENOTAZIONE
         </Fab>

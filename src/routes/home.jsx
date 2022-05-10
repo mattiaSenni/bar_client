@@ -18,7 +18,8 @@ export default function Home(){
             <Typography variant="p">{user.Indirizzo}, {user.Citta}</Typography><br />
             <br />
             <Button onClick={() => { navigate('/menu') }}>Visualizza il menù</Button><br />
-            <Button onClick={()=>{navigate('/orders')}}>Tutte le prenotazioni</Button>
+            <Button onClick={() => { navigate('/orders') }}>Tutte le prenotazioni</Button><br />
+            <Button onClick={() => { navigate('/carrello') }}>Il tuo carrello</Button>
             
         </div>
     )

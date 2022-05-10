@@ -7,6 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpecificOrder } from '../request';
+import MenuItem from './MenuItem';
 
 export default function PrenotationCard({ prenotation }) {
   const [detail, setDetail] = useState(null)
@@ -47,20 +48,24 @@ export default function PrenotationCard({ prenotation }) {
           
           <div>
               {detail ?
-                detail.menu.map((el, i1) => {
-                  return (<div key={i1} style={{border:'1px solid black', borderRadius:'5px', padding:'10px', margin:'5px'}}>
+              detail.menu.map((el, i1) => {
+                  console.log(el);
+                return (
+                  <div key={i1} style={{ border: '1px solid black', borderRadius: '5px', padding: '10px', margin: '5px' }}>
                     {el.Nome}<br />
                     {
-                      el.prodotti.map((el, index) => {
+                      el.prodotti.map((el1, index) => {
                         return (
                           <div key={index}>
-                            {el.Descrizione} - 
-                            {el.Categoria}<br />
+                            {el1.Descrizione} - 
+                            {el1.Categoria}<br />
                           </div>
                         )
                       })
                     }
-                  </div>)
+                    Quantità: {el.Quantita}
+                  </div>
+                )
                 })
                 :
                 null}

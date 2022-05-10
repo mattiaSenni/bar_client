@@ -12,7 +12,6 @@ export default function Menu() {
 
   //ask getMenu in useEffect just with componentDidMount
   useEffect(() => {
-    console.log("getMenu")
     getMenu(token, user['IDBar']).then(res => {
       setMenu(res.data)
       setError(false)

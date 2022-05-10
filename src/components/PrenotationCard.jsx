@@ -13,6 +13,7 @@ export default function PrenotationCard({ prenotation }) {
   const [open, setOpen] = useState(false);
   const user = useSelector(state => state.login).login
   const token = useSelector(state => state.login).token
+  console.log(prenotation);
 
   const handleClickOpen = () => {
     if (!detail) {
@@ -32,6 +33,7 @@ export default function PrenotationCard({ prenotation }) {
   return (
     <>
       <div style={{ padding: '10px', margin: '5px', marginBottom: '10px', borderRadius: '5px', boxShadow: '2px 2px 10px #333' }} onClick={handleClickOpen}>
+        {stato[prenotation.Stato]}<br />
         {prenotation['Ora_Inizio']} - {prenotation['Ora_Fine']}<br />
         €{prenotation['Saldo']} - {prenotation['Tipologia']}<br />
       </div>

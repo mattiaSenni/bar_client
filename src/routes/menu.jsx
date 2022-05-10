@@ -35,7 +35,7 @@ export default function Menu() {
         menu ?
           menu.map((item, index) => { 
             return (
-              <MenuItem key={index} item={item} />
+              <MenuItem key={index} item={item} addToCart/>
             )
           })
           :

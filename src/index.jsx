@@ -18,7 +18,7 @@ import { Provider } from 'react-redux'
 import PageNotFound from './routes/pageNotFound'
 import Home from './routes/home'
 import Login from './routes/login'
-import Setting from './routes/setting'
+import Carrello from './routes/carrello'
 import Menu from './routes/menu'
 import Orders from './routes/orders'
 
@@ -44,7 +44,7 @@ function MyApp() {
             <Route path="/home" element={<Home />}></Route>
             <Route path="/menu" element={<Menu />}></Route>
             <Route path="/orders" element={<Orders />}></Route>
-            <Route path="/setting" element={<Setting />}></Route>
+            <Route path="/carrello" element={<Carrello />}></Route>
           </Route>
           <Route
             path="/login"

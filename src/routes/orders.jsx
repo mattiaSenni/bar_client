@@ -22,7 +22,7 @@ export default function Orders() {
   }, [])
 
   return (
-    <div style={{ padding: '10px', marginTop: '30px' }}>
+    <div style={{ padding: '10px', marginTop: '30px'}}>
       <Typography variant="h4">Prenotazioni</Typography>
       <hr />
       {

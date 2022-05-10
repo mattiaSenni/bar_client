@@ -18,7 +18,7 @@ export default function TopAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color='primary' enableColorOnDark>
+      <AppBar position="fixed" color='primary' enableColorOnDark>
         <Toolbar>
           <IconButton
             size="large"

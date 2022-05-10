@@ -46,3 +46,13 @@ export async function getSpecificOrder(jwt, idUser, idOrder) {
 
   return await axios.request(options);
 }
+
+export async function putPrenotazione(jwt, idUser, prenotazione){
+  var options = {
+    method: 'PUT',
+    url: 'http://127.0.0.1:3000/user/'+ idUser + '/prenotazione',
+    data:{prenotazione}
+  }
+
+  return await axios.request(options);
+}

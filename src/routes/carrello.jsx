@@ -6,11 +6,34 @@ import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import { putPrenotazione } from "../request";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItemMui from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 export default function Carrello() {
     const cart = useSelector(state => state.carrello.carrello)
     const [open, setOpen] = useState(false)
+    const [transazione, setTransazione] = useState(4)
+
+    const handlePutPrenotazione = ()=>{
+        //now is tosta
+        const obj = {
+            
+        }
+    }
+    
+    const calcolaTotale = ()=>{
+        const sum = cart.reduce(
+            (prev, curr) => prev + curr.menu.Prezzo * curr.count, 0
+        )        
+        return sum
+    }
+
+    console.log('CART', cart);
+    const tot = calcolaTotale()
 
     return (
         <div style={{ padding: '10px', marginTop: '30px'}}>
@@ -41,7 +64,23 @@ export default function Carrello() {
         <DialogContent>
 
           <div>
-              Sei sicuro di voler mandare la prenotazione
+              <form>
+              <FormControl fullWidth>
+                <InputLabel id="tipo-pagamento">Tipo pagamento</InputLabel>
+                <Select
+                    labelId="tipo-pagamento"
+                    value={transazione}
+                    label="Age"
+                    onChange={(e)=> setTransazione(e.target.value)}
+                >
+                    <MenuItemMui value={1}>Visa</MenuItemMui>
+                    <MenuItemMui value={2}>MasterCard</MenuItemMui>
+                    <MenuItemMui value={3}>Satispay</MenuItemMui>
+                    <MenuItemMui value={4}>Contanti</MenuItemMui>
+                </Select>
+            </FormControl>
+              </form>
+              <p>prezzo: €{tot}</p>
           </div>
 
         </DialogContent>
@@ -54,3 +93,16 @@ export default function Carrello() {
       
     )
   }
+
+  const provenienza = {
+    'Visa':1,
+    'MasterCard':2,
+    'Satispay':3,
+    'Contanti':4,
+  }
+  const provenienzaValue = [
+    'Visa',
+    'MasterCard',
+    'Satispay',
+    'Contanti',
+  ]

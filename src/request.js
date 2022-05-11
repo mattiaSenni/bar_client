@@ -23,6 +23,19 @@ export async function getMenu(jwt, idBar) {
   return await axios.request(options);
 }
 
+export async function getFasciaOraria(jwt, idBar) {
+  var options = {
+    method: 'GET',
+    url: 'http://127.0.0.1:3000/bar/' + idBar + '/fasciaoraria',
+    params: {
+      token: jwt
+    },
+  };
+
+  return await axios.request(options);
+}
+
+
 export async function getOrders(jwt, idUser) {
   var options = {
     method: 'GET',
@@ -51,7 +64,7 @@ export async function putPrenotazione(jwt, idUser, prenotazione){
   var options = {
     method: 'PUT',
     url: 'http://127.0.0.1:3000/user/'+ idUser + '/prenotazione',
-    data:{prenotazione}
+    data:{prenotazione, token: jwt}
   }
 
   return await axios.request(options);

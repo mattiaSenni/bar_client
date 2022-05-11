@@ -31,11 +31,14 @@ export const carrello = createSlice({
             }
             return i
         })
-    }
+      },
+      deleteCarrello: (state, action) => {
+          state.carrello = []
+        }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setCarrello, pushCarrello, removeCarrello, EditCarrello } = carrello.actions 
+export const { setCarrello, pushCarrello, removeCarrello, EditCarrello, deleteCarrello } = carrello.actions 
 
 export default carrello.reducer

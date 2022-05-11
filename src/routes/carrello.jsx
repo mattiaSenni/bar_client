@@ -6,17 +6,30 @@ import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import { putPrenotazione } from "../request";
+import { putPrenotazione, getFasciaOraria } from "../request";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItemMui from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { deleteCarrello } from "../features/carrello";
 
 
 export default function Carrello() {
-    const cart = useSelector(state => state.carrello.carrello)
+  const cart = useSelector(state => state.carrello.carrello)
+  const login = useSelector(state => state.login) 
+  const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
     const [transazione, setTransazione] = useState(4)
+    const [fasciaOraria, setFasciaOraria] = useState(null)
+  const [fasciaOrariaSelected, setFasciaOrariaSelected] = useState(null)
+  
+  
+  if (!fasciaOraria) {
+    getFasciaOraria(login.token, login.login.IDBar).then(res => {
+      
+      setFasciaOraria(res.data)
+    })
+  }
 
     const handlePutPrenotazione = ()=>{
         //now is tosta
@@ -30,9 +43,34 @@ export default function Carrello() {
             (prev, curr) => prev + curr.menu.Prezzo * curr.count, 0
         )        
         return sum
+  }
+  
+  const handleSetPrenotation = async() => {
+    const data = {
+      "transazione": {
+        'idProvenienza': transazione,
+        'saldo': tot
+      },
+      'idUtente': login.login.ID,
+      'modalitaPagamento': transazione == 4 ? 1 : 2,
+      'idFasciaOraria': fasciaOrariaSelected,
+      'menu': [
+        ...cart.map(item => {
+          return {
+            'idMenu': item.menu.ID,
+            'quantita': item.count
+          }
+        })
+      ]
     }
 
-    console.log('CART', cart);
+
+    await putPrenotazione(login.token, login.login.ID, JSON.stringify(data));
+    setOpen(false)
+    dispatch(deleteCarrello())
+
+  }
+
     const tot = calcolaTotale()
 
     return (
@@ -70,7 +108,7 @@ export default function Carrello() {
                 <Select
                     labelId="tipo-pagamento"
                     value={transazione}
-                    label="Age"
+                    label="Tipo pagamento"
                     onChange={(e)=> setTransazione(e.target.value)}
                 >
                     <MenuItemMui value={1}>Visa</MenuItemMui>
@@ -81,11 +119,32 @@ export default function Carrello() {
             </FormControl>
               </form>
               <p>prezzo: €{tot}</p>
+              {
+                fasciaOraria ?
+                  <FormControl fullWidth>
+                    <InputLabel id="fasciaOraria">Fascia Oraria</InputLabel>
+                    <Select
+                      labelId="fasciaOraria"
+                      value={fasciaOrariaSelected}
+                      label="Tipo pagamento"
+                      onChange={(e) => setFasciaOrariaSelected(e.target.value)}
+                    >
+                      {
+                        fasciaOraria.map((item, index) => { 
+                          return (
+                            <MenuItemMui value={item.ID}>{item['Ora_Inizio']} - {item['Ora_Fine']}</MenuItemMui>
+                          )
+                        })
+                      }
+                    </Select>
+                  </FormControl>
+                  :<p>Attendere il caricamento delle fascie orarie</p>
+              }
           </div>
 
         </DialogContent>
         <DialogActions>
-        <Button>INVIA</Button>
+        <Button variant="contained" onClick={handleSetPrenotation}>INVIA</Button>
           <Button onClick={()=>{setOpen(false)}}>CHIUDI</Button>
         </DialogActions>
       </Dialog>

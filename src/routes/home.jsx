@@ -44,8 +44,10 @@ export default function Home(){
 
     return(
         <div style={{margin:'10px', marginTop:'30px'}} >
-            <Typography variant="h4">Buongiorno {user.Nome}</Typography>
-            <img src={require('../assets/bar_intro.png')} style={{width:'90%', maxWidth:'900px', margin:'10px'}} alt="immagine di benvenuto"/>
+            <div style={{textAlign:'center'}}>
+                <Typography variant="h4">Buongiorno {user.Nome}</Typography>
+                <img src={require('../assets/bar_intro.png')} style={{ width: '90%', maxWidth: '900px', margin: '10px' }} alt="immagine di benvenuto" />
+            </div>
             <hr />
             <Typography variant="p">{user.NomeScuola}</Typography><br />
             <Typography variant="p">{user.Indirizzo}, {user.Citta}</Typography><br />

@@ -69,6 +69,11 @@ export default function Carrello() {
       ]
     }
 
+    if (cart.length == 0) {
+      alert('selezionare prima i prodotti')
+      return;
+    }
+
 
     dispatch(deleteCarrello())
     setOpen(false)

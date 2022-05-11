@@ -33,7 +33,7 @@ export default function PrenotationCard({ prenotation }) {
 
   return (
     <>
-      <div style={{ padding: '10px', margin: '5px', marginBottom: '10px', borderRadius: '5px', boxShadow: '2px 2px 10px #333' }} onClick={handleClickOpen}>
+      <div style={{ padding: '10px', margin: '5px', marginBottom: '10px', borderRadius: '5px', boxShadow: '2px 2px 5px #cacaca', backgroundColor:'white' }} onClick={handleClickOpen}>
         {stato[prenotation.Stato]}<br />
         {prenotation['Ora_Inizio']} - {prenotation['Ora_Fine']}<br />
         €{prenotation['Saldo']} - {prenotation['Tipologia']}<br />

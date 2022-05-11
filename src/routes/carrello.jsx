@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux"
 import MenuItem from "../components/MenuItem"
-import { Button, Typography, Fab } from "@mui/material";
+import { Button, Typography, Fab, Snackbar } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
@@ -11,8 +11,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItemMui from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { deleteCarrello } from "../features/carrello";
-
+import { deleteCarrello } from '../features/carrello'
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import MuiAlert from '@mui/material/Alert';
+import React from "react";
 
 export default function Carrello() {
   const cart = useSelector(state => state.carrello.carrello)
@@ -22,6 +25,8 @@ export default function Carrello() {
     const [transazione, setTransazione] = useState(4)
     const [fasciaOraria, setFasciaOraria] = useState(null)
   const [fasciaOrariaSelected, setFasciaOrariaSelected] = useState(null)
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [snackbarErrorOpen, setSnackbarErrorOpen] = useState(false)
   
   
   if (!fasciaOraria) {
@@ -65,9 +70,13 @@ export default function Carrello() {
     }
 
 
-    await putPrenotazione(login.token, login.login.ID, JSON.stringify(data));
-    setOpen(false)
     dispatch(deleteCarrello())
+    setOpen(false)
+    putPrenotazione(login.token, login.login.ID, JSON.stringify(data)).then(res => { 
+      setSnackbarOpen(true)
+    }).catch(err => {
+      setSnackbarErrorOpen(true)
+    })
 
   }
 
@@ -147,7 +156,21 @@ export default function Carrello() {
         <Button variant="contained" onClick={handleSetPrenotation}>INVIA</Button>
           <Button onClick={()=>{setOpen(false)}}>CHIUDI</Button>
         </DialogActions>
-      </Dialog>
+        </Dialog>
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={6000}
+          onClose={()=>{setSnackbarOpen(false)}}
+          message="Prenotazione inviata con successo"
+          action={<IconButton size="small" aria-label="close" color="inherit" onClick={()=>{setSnackbarOpen(false)}}><CloseIcon fontSize="small" /></IconButton>}
+        />
+        <Snackbar
+          open={snackbarErrorOpen}
+          autoHideDuration={6000}
+          onClose={() => { setSnackbarErrorOpen(false) }}
+          message="ERRORE INVIO PRENOTAZIONE"
+          action={<IconButton size="small" aria-label="close" color="inherit" onClick={() => { setSnackbarErrorOpen(false) }}><CloseIcon fontSize="small" /></IconButton>}
+        />
       </div>
       
     )

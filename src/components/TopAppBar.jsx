@@ -8,7 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Drawer,  List, ListItem, ListItemText, ListItemIcon, Avatar } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import {logout} from '../features/login'
+import { logout } from '../features/login'
+import { deleteCarrello } from '../features/carrello'
 
 
 export default function TopAppBar() {
@@ -51,7 +52,7 @@ export default function TopAppBar() {
         </div>
         <hr />
         <List>
-          <ListItem button onClick={()=>{dispatch(logout())}}>
+          <ListItem button onClick={() => { dispatch(logout()); dispatch(deleteCarrello())}}>
             <ListItemText>Logout</ListItemText>
           </ListItem>
         </List>

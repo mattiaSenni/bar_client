@@ -56,7 +56,7 @@ export default function MenuItem({ item, hasNumber, number, notShowCost}) {
       {/* <div style={{ padding: '10px', margin: '5px', marginBottom:'10px', borderRadius: '5px', boxShadow: '2px 2px 10px #333' }} onClick={handleClickOpen}>
         
       </div> */}
-      <Card sx={{ maxWidth: 500, marginLeft:'auto', marginRight:'auto', marginBottom:'20px' }}>
+      <Card sx={{ maxWidth: 500, margin: '10px', marginLeft: 'auto', marginRight: 'auto' }} className="col-12 col-md-6 col-xl-4">
         <CardMedia
           component="img"
           height="200"

@@ -85,17 +85,21 @@ export default function Carrello() {
     return (
         <div style={{ padding: '10px', marginTop: '30px'}}>
         <Typography variant="h4">Prenotazioni</Typography><hr />
-        {
-            cart.map((item, index) => {
-                
-                
+        <div className="container">
+          <div className="row">
+            {
+              cart.map((item, index) => {
+
+
                 return (
-                    <>
-                        <MenuItem key={index} item={item.menu} number={item.count} hasNumber removeFromCart/>
-                    </>
+                  <>
+                    <MenuItem key={index} item={item.menu} number={item.count} hasNumber removeFromCart />
+                  </>
                 )
-            })
-        }
+              })
+            }
+          </div>
+        </div>
 
         <Fab variant="extended" style={{position: 'fixed',bottom: 66,right: 16,}} color="primary" onClick={()=>{setOpen(true)}}>
         <SendIcon sx={{ mr: 1 }} />

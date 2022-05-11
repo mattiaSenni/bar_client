@@ -30,27 +30,31 @@ export default function Menu() {
           :
           null
       }
-      {
-        menu ?
-          menu.map((item, index) => { 
-            return (
-              <MenuItem key={index} item={item} addToCart/>
-            )
-          })
-          :
-          <>
-            <Skeleton variant="rect" width={300} height={300} />
-            <Skeleton variant="rect" width={300} height={300} />
-            <Skeleton variant="rect" width={300} height={300} />
-            <Skeleton variant="rect" width={300} height={300} />
-            <Skeleton variant="rect" width={300} height={300} />
-            <Skeleton variant="rect" width={300} height={300} />
-            <Skeleton variant="rect" width={300} height={300} />
-            <Skeleton variant="rect" width={300} height={300} />
-            <Skeleton variant="rect" width={300} height={300} />
-            <Skeleton variant="rect" width={300} height={300} />
-          </>
-      }
+      <div className="container">
+        <div className="row">
+          {
+            menu ?
+              menu.map((item, index) => {
+                return (
+                  <MenuItem key={index} item={item} addToCart />
+                )
+              })
+              :
+              <>
+                <Skeleton variant="rect" width={300} height={300} />
+                <Skeleton variant="rect" width={300} height={300} />
+                <Skeleton variant="rect" width={300} height={300} />
+                <Skeleton variant="rect" width={300} height={300} />
+                <Skeleton variant="rect" width={300} height={300} />
+                <Skeleton variant="rect" width={300} height={300} />
+                <Skeleton variant="rect" width={300} height={300} />
+                <Skeleton variant="rect" width={300} height={300} />
+                <Skeleton variant="rect" width={300} height={300} />
+                <Skeleton variant="rect" width={300} height={300} />
+              </>
+          }
+        </div>
+      </div>
     </div>
   )
 }
